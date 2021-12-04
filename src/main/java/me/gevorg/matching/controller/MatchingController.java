@@ -38,9 +38,14 @@ public class MatchingController {
      */
     @PostMapping
     public List<EmployeeMatch> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        log.info("Upload file {}", file.getName());
+        log.info("Upload file {}", file.getOriginalFilename());
 
         List<Employee> employeeList = csvService.extractFileData(file.getInputStream());
-        return matchingService.findMatches(employeeList);
+        log.info("Employee list {}", employeeList);
+
+        List<EmployeeMatch> employeeMatches = matchingService.findMatches(employeeList);
+        log.info("Best matches found {}", employeeMatches);
+
+        return employeeMatches;
     }
 }

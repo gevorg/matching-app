@@ -36,6 +36,8 @@ Connected to the target VM, address: '127.0.0.1:55647', transport: 'socket'
 2021-12-04 15:49:40.885  INFO 125565 --- [           main] me.gevorg.matching.MatchingApplication   : Started MatchingApplication in 0.909 seconds (JVM running for 1.896)
 ```
 
+Application should open on `http://localhost:8080/`.
+
 ## Running tests
 
 To run all tests:

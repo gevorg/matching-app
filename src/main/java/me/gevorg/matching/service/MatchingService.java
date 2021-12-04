@@ -21,9 +21,15 @@ public abstract class MatchingService {
      */
     public List<EmployeeMatch> findMatches(List<Employee> employeeList) {
         int[][] matchMatrix = generateMatchMatrix(employeeList);
+        for (int[] matchRow: matchMatrix) {
+            log.info("Match matrix: {}", Arrays.toString(matchRow));
+        }
 
         HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm(matchMatrix);
         int[][] bestMatches = hungarianAlgorithm.findOptimalAssignment();
+        for (int[] bestMatch: bestMatches) {
+            log.info("Best match: {}", Arrays.toString(bestMatch));
+        }
 
         return extractMatches(employeeList, bestMatches);
     }
