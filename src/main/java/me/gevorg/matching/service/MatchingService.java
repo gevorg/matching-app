@@ -50,21 +50,33 @@ public abstract class MatchingService {
 
             if (usedIndexes.contains(matchingPair[0]) || usedIndexes.contains(matchingPair[1])) {
                 continue;
+            } else {
+                usedIndexes.add(leftIndex);
+                usedIndexes.add(rightIndex);
             }
 
-            Employee left = employeeList.get(leftIndex);
-            usedIndexes.add(leftIndex);
-
-            Employee right = employeeList.get(rightIndex);
-            usedIndexes.add(rightIndex);
-
-            int score = getScore(left, right);
-
-            EmployeeMatch employeeMatch = new EmployeeMatch(left.getName(), right.getName(), (byte) score);
+            EmployeeMatch employeeMatch = extractMatch(employeeList, leftIndex, rightIndex);
             foundMatches.add(employeeMatch);
         }
 
         return foundMatches;
+    }
+
+    /**
+     * Extracts match using index data.
+     *
+     * @param employeeList employee list.
+     * @param leftIndex left index.
+     * @param rightIndex right index.
+     * @return employee match
+     */
+    private EmployeeMatch extractMatch(List<Employee> employeeList, int leftIndex, int rightIndex) {
+        Employee left = employeeList.get(leftIndex);
+        Employee right = employeeList.get(rightIndex);
+
+        int score = getScore(left, right);
+
+        return new EmployeeMatch(left.getName(), right.getName(), (byte) score);
     }
 
     /**
