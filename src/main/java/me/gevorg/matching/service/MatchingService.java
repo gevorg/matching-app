@@ -13,6 +13,9 @@ import java.util.*;
  */
 @Slf4j
 public abstract class MatchingService {
+    // Max score.
+    public static final int MAX_SCORE = 100;
+
     /**
      * Finds the best matches based on provided employee list.
      *
@@ -89,7 +92,7 @@ public abstract class MatchingService {
         int matrixSize = employeeList.size();
         int[][] matchMatrix = new int[matrixSize][matrixSize];
         for (int[] row: matchMatrix) {
-            Arrays.fill(row, 100);
+            Arrays.fill(row, MAX_SCORE);
         }
 
         for (int i = 0; i < employeeList.size(); ++ i) {
@@ -99,8 +102,8 @@ public abstract class MatchingService {
 
                 int score = getScore(left, right);
 
-                matchMatrix[i][j] = 100 - score;
-                matchMatrix[j][i] = 100 - score;
+                matchMatrix[i][j] = MAX_SCORE - score;
+                matchMatrix[j][i] = MAX_SCORE - score;
             }
         }
 
