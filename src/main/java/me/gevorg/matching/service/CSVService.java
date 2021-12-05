@@ -43,11 +43,11 @@ public class CSVService {
 
         return csvParser.getRecords().stream().map(
                 record -> Employee.builder()
-                        .name(record.get("Name"))
-                        .email(record.get("Email"))
-                        .division(record.get("Division"))
-                        .age(Short.valueOf(record.get("Age")))
-                        .timezone(Byte.valueOf(record.get("Timezone")))
+                        .name(record.get(HEADERS[0]))
+                        .email(record.get(HEADERS[1]))
+                        .division(record.get(HEADERS[2]))
+                        .age(Short.valueOf(record.get(HEADERS[3])))
+                        .timezone(Byte.valueOf(record.get(HEADERS[4])))
                         .build()
         ).collect(Collectors.toList());
     }
